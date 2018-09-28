@@ -14,7 +14,7 @@ Add ResourceDictionary to App.xaml.
 
 ```xml
 <Application.Resources>
-  <ResourceDictionary Source="pack://application:,,,/ScrolBar.Style;component/Dictionary.xaml"/>
+  <ResourceDictionary Source="pack://application:,,,/ScrollBar.Style;component/Dictionary.xaml"/>
 </Application.Resources>
 ```
 
