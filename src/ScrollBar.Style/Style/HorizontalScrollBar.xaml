@@ -1,46 +1,43 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StreamGeometry x:Key="Right">
-        M14,8l4-4L14,0h2l4,4L16,8Z
+        M4,8,0,4,4,0H6L2,4,6,8Z
     </StreamGeometry>
     <StreamGeometry x:Key="Left">
-        M4,8,0,4,4,0H6L2,4,6,8Z
+        M14,8l4-4L14,0h2l4,4L16,8Z
     </StreamGeometry>
 
     <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
-        <Border Name="Scroll" Grid.RowSpan="3" CornerRadius="2"
+        <Border Name="Scroll" Background="Transparent" Height="18"
                 BorderBrush="{DynamicResource CheckBorder}"
-                BorderThickness="0" Background="Transparent">
-
-            <DockPanel Name="TrackContent" Background="#19999999" Width="5"
-                  HorizontalAlignment="Right">
-
-                <RepeatButton Name="LeftButton" DockPanel.Dock="Left" MaxWidth="18" Width="0"
+                BorderThickness="0" CornerRadius="2">
+            <DockPanel Name="TrackContent" Background="#19999999" Height="5" VerticalAlignment="Bottom">
+                <RepeatButton Name="RightButton" DockPanel.Dock="Left" MaxWidth="18" Width="0"
                               Style="{DynamicResource ScrollBarLineButton}"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
-                              Command="ScrollBar.LineUpCommand"
-                              Content="{DynamicResource Left}"/>
-                <RepeatButton Name="RightButton" DockPanel.Dock="Right" MaxWidth="18" Width="0"
-                              Style="{DynamicResource ScrollBarLineButton}"
-                              Command="ScrollBar.LineDownCommand"
-                              HorizontalContentAlignment="Center"
-                              VerticalContentAlignment="Center"
+                              Command="ScrollBar.LineRightCommand"
                               Content="{DynamicResource Right}"/>
-                <Track Name="PART_Track" IsDirectionReversed="true" MinHeight="36">
+                <RepeatButton Name="LeftButton" DockPanel.Dock="Right" MaxWidth="18" Width="0"
+                              Style="{DynamicResource ScrollBarLineButton}"
+                              Command="ScrollBar.LineLeftCommand"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              Content="{DynamicResource Left}"/>
+                <Track Name="PART_Track" IsDirectionReversed="true" MinWidth="36">
                     <Track.DecreaseRepeatButton>
                         <RepeatButton Style="{DynamicResource ScrollBarPageButton}"
-                                        Command="ScrollBar.PageLeftCommand" />
+                                      Command="ScrollBar.PageRightCommand" />
                     </Track.DecreaseRepeatButton>
                     <Track.Thumb>
-                        <Thumb BorderBrush="{DynamicResource NormalBorderBrush}"
-                               Background="{DynamicResource NormalBrush}"
+                        <Thumb BorderBrush="{DynamicResource HorizontalNormalBorderBrush}"
+                               Background="{DynamicResource HorizontalNormalBrush}"
                                Style="{DynamicResource ScrollBarThumb}"
-                               Margin="0,1,0,1"/>
+                               Name="ThumbBtn" Margin="1,0,1,0"/>
                     </Track.Thumb>
                     <Track.IncreaseRepeatButton>
                         <RepeatButton Style="{DynamicResource ScrollBarPageButton}"
-                                      Command="ScrollBar.PageRightCommand" />
+                                      Command="ScrollBar.PageLeftCommand" />
                     </Track.IncreaseRepeatButton>
                 </Track>
             </DockPanel>
@@ -63,7 +60,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="TrackContent" Storyboard.TargetProperty="Height"
-                                             To="0" BeginTime="0:0:2" Duration="0:0:0.2"/>
+                                             To="5" BeginTime="0:0:2" Duration="0:0:0.2"/>
                             <DoubleAnimation Storyboard.TargetName="LeftButton" Storyboard.TargetProperty="Width"
                                              To="0" BeginTime="0:0:2" Duration="0:0:0.2"/>
                             <DoubleAnimation Storyboard.TargetName="RightButton" Storyboard.TargetProperty="Width"
